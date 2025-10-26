@@ -252,7 +252,7 @@ export default function Home() {
                 <p className="text-oath-text-secondary">"Take out trash 8 PM"</p>
               </div>
               <div className="space-y-2">
-                <div className="bg-white border border-oath-emerald-primary rounded-oath-md p-3 text-small">
+                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
                   ✓ 7:45 PM: Reminder in 15 minutes
                 </div>
               </div>
@@ -274,19 +274,19 @@ export default function Home() {
                 <p className="text-oath-text-secondary">"Complete quarterly report Friday 5 PM"</p>
               </div>
               <div className="space-y-2">
-                <div className="bg-white border border-oath-emerald-primary rounded-oath-md p-3 text-small">
+                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
                   ✓ Monday: Start gathering data
                 </div>
-                <div className="bg-white border border-oath-emerald-primary rounded-oath-md p-3 text-small">
+                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
                   ✓ Tuesday: Continue analysis
                 </div>
-                <div className="bg-white border border-oath-emerald-primary rounded-oath-md p-3 text-small">
+                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
                   ✓ Thursday: Begin writing report
                 </div>
-                <div className="bg-white border border-oath-emerald-primary rounded-oath-md p-3 text-small">
+                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
                   ✓ Friday 2 PM: Final review
                 </div>
-                <div className="bg-white border border-oath-emerald-primary rounded-oath-md p-3 text-small">
+                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
                   ✓ Friday 4:30 PM: Due in 30 minutes
                 </div>
               </div>
