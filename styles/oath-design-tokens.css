@@ -1,0 +1,344 @@
+/**
+ * Oath Design Tokens
+ *
+ * CSS Custom Properties for the Oath brand
+ * Import this file into your website project
+ *
+ * Usage:
+ *   color: var(--oath-emerald-primary);
+ *   font-size: var(--font-size-body);
+ *   padding: var(--spacing-lg);
+ */
+
+:root {
+  /* ============================================
+     EMERALD ACCENT (Primary Brand)
+     ============================================ */
+  --oath-emerald-primary: #0FAA77;
+  --oath-emerald-deep: #067B60;
+  --oath-emerald-bright: #23E1B2;
+  --oath-emerald-pressed: #0A8D67;
+  --oath-emerald-surface: rgba(15, 170, 119, 0.14);
+  --oath-emerald-hairline: rgba(15, 170, 119, 0.35);
+  --oath-emerald-glow: rgba(35, 225, 178, 0.30);
+  --oath-emerald-on-accent: #FFFFFF;
+
+  /* ============================================
+     GOLD ACCENT (Secondary Brand)
+     ============================================ */
+  --oath-gold-primary: #EBDFA4;
+  --oath-gold-deep: #BFA35A;
+  --oath-gold-bright: #FFF9E6;
+  --oath-gold-pressed: #D5C17C;
+  --oath-gold-surface: rgba(235, 223, 164, 0.18);
+  --oath-gold-hairline: rgba(235, 223, 164, 0.50);
+  --oath-gold-glow: rgba(255, 248, 230, 0.60);
+  --oath-gold-on-accent: #0B0C0D;
+
+  /* ============================================
+     BASE THEME - LIGHT MODE
+     ============================================ */
+  --oath-bg: #FFFFFF;
+  --oath-surface: #FAFBFC;
+  --oath-text: #111827;
+  --oath-text-secondary: #6B7280;
+  --oath-hairline: #E5E7EB;
+
+  /* ============================================
+     MISS/FAILURE STATE - EMERALD BRAND
+     ============================================ */
+  --oath-miss-bg: #FFD27A;
+  --oath-miss-border: #FFC34D;
+  --oath-miss-ink: #111216;
+
+  /* ============================================
+     MISS/FAILURE STATE - GOLD BRAND (LIGHT)
+     ============================================ */
+  --oath-miss-gold-light-bg: #E6ECF2;
+  --oath-miss-gold-light-border: #CBD5E1;
+  --oath-miss-gold-light-ink: #111216;
+
+  /* ============================================
+     TYPOGRAPHY
+     ============================================ */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                 'Helvetica Neue', Arial, sans-serif;
+
+  /* Font Sizes */
+  --font-size-heading-xl: 2.25rem;      /* 36px */
+  --font-size-heading-lg: 1.5rem;       /* 24px */
+  --font-size-heading-md: 1.25rem;      /* 20px */
+  --font-size-body: 0.9375rem;          /* 15px */
+  --font-size-small: 0.8125rem;         /* 13px */
+  --font-size-caption: 0.75rem;         /* 12px */
+  --font-size-button: 0.9375rem;        /* 15px */
+  --font-size-chip: 0.875rem;           /* 14px */
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.5;
+  --line-height-loose: 1.6;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.5px;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.25px;
+  --letter-spacing-wider: 0.5px;
+
+  /* ============================================
+     SPACING
+     ============================================ */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  --spacing-xxxl: 32px;
+  --spacing-xxxxl: 48px;
+  --spacing-xxxxxl: 64px;
+
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* ============================================
+     SHADOWS
+     ============================================ */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+  --transition-fast: 150ms cubic-bezier(0.33, 1, 0.68, 1);
+  --transition-normal: 250ms cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-slow: 350ms cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ============================================
+     Z-INDEX SCALE
+     ============================================ */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-popover: 500;
+  --z-toast: 600;
+  --z-tooltip: 700;
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --oath-bg: #000000;
+    --oath-surface: #1F2124;
+    --oath-text: #FFFFFF;
+    --oath-text-secondary: #9CA3AF;
+    --oath-hairline: #262B30;
+
+    /* Gold brand miss colors change in dark mode */
+    --oath-miss-gold-dark-bg: #C7CFD9;
+    --oath-miss-gold-dark-border: #9AA8B8;
+    --oath-miss-gold-dark-ink: #111216;
+
+    /* Shadows are lighter in dark mode */
+    --shadow-sm: 0 1px 2px 0 rgba(255, 255, 255, 0.05);
+    --shadow-md: 0 1px 3px 0 rgba(255, 255, 255, 0.1);
+    --shadow-lg: 0 4px 6px -1px rgba(255, 255, 255, 0.1);
+    --shadow-xl: 0 10px 15px -3px rgba(255, 255, 255, 0.1);
+    --shadow-2xl: 0 20px 25px -5px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ============================================
+   GRADIENTS (as CSS classes)
+   ============================================ */
+
+/* Hero Gradient - Top to bottom */
+.oath-gradient-hero-emerald {
+  background: linear-gradient(
+    to bottom,
+    var(--oath-emerald-deep),
+    var(--oath-emerald-primary) 30%,
+    var(--oath-emerald-primary) 70%,
+    var(--oath-emerald-bright)
+  );
+}
+
+.oath-gradient-hero-gold {
+  background: linear-gradient(
+    to bottom,
+    var(--oath-gold-deep),
+    var(--oath-gold-primary) 30%,
+    var(--oath-gold-primary) 70%,
+    var(--oath-gold-bright)
+  );
+}
+
+/* Chip Gradient - Diagonal */
+.oath-gradient-chip-emerald {
+  background: linear-gradient(
+    135deg,
+    var(--oath-emerald-primary),
+    var(--oath-emerald-deep)
+  );
+}
+
+.oath-gradient-chip-gold {
+  background: linear-gradient(
+    135deg,
+    var(--oath-gold-primary),
+    var(--oath-gold-deep)
+  );
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Typography */
+.oath-heading-xl {
+  font-size: var(--font-size-heading-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.oath-heading-lg {
+  font-size: var(--font-size-heading-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.oath-heading-md {
+  font-size: var(--font-size-heading-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+}
+
+.oath-body {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+}
+
+.oath-body-semibold {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-relaxed);
+}
+
+.oath-small {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-normal);
+}
+
+.oath-caption {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Text Colors */
+.oath-text-primary {
+  color: var(--oath-text);
+}
+
+.oath-text-secondary {
+  color: var(--oath-text-secondary);
+}
+
+.oath-text-emerald {
+  color: var(--oath-emerald-primary);
+}
+
+.oath-text-gold {
+  color: var(--oath-gold-primary);
+}
+
+/* Backgrounds */
+.oath-bg-default {
+  background-color: var(--oath-bg);
+}
+
+.oath-bg-surface {
+  background-color: var(--oath-surface);
+}
+
+/* Borders */
+.oath-border {
+  border: 1px solid var(--oath-hairline);
+}
+
+.oath-border-emerald {
+  border: 1px solid var(--oath-emerald-primary);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--oath-emerald-primary);
+  outline-offset: 4px;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+body {
+  font-family: var(--font-family);
+  color: var(--oath-text);
+  background-color: var(--oath-bg);
+  line-height: var(--line-height-relaxed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default margins */
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
