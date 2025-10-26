@@ -252,7 +252,7 @@ export default function Home() {
                 <p className="text-oath-text-secondary">"Take out trash 8 PM"</p>
               </div>
               <div className="space-y-2">
-                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
+                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', border: '1px solid var(--oath-emerald-primary)', borderRadius: '16px' }}>
                   ✓ 7:45 PM: Reminder in 15 minutes
                 </div>
               </div>
@@ -274,19 +274,19 @@ export default function Home() {
                 <p className="text-oath-text-secondary">"Complete quarterly report Friday 5 PM"</p>
               </div>
               <div className="space-y-2">
-                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
+                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', border: '1px solid var(--oath-emerald-primary)', borderRadius: '16px' }}>
                   ✓ Monday: Start gathering data
                 </div>
-                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
+                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', border: '1px solid var(--oath-emerald-primary)', borderRadius: '16px' }}>
                   ✓ Tuesday: Continue analysis
                 </div>
-                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
+                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', border: '1px solid var(--oath-emerald-primary)', borderRadius: '16px' }}>
                   ✓ Thursday: Begin writing report
                 </div>
-                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
+                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', border: '1px solid var(--oath-emerald-primary)', borderRadius: '16px' }}>
                   ✓ Friday 2 PM: Final review
                 </div>
-                <div className="border border-oath-emerald-primary rounded-oath-lg p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)' }}>
+                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', border: '1px solid var(--oath-emerald-primary)', borderRadius: '16px' }}>
                   ✓ Friday 4:30 PM: Due in 30 minutes
                 </div>
               </div>
