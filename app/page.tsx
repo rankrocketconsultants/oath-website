@@ -13,14 +13,14 @@ export default function Home() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="oath-gradient-hero-emerald text-white px-6 py-20 md:py-32 text-center">
+        <section className="oath-gradient-hero-emerald text-white px-6 py-20 md:py-32">
           <div className="max-w-4xl mx-auto">
             {/* Large Brand Mark */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-center"
             >
               Oath.
             </motion.div>
@@ -30,7 +30,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-center"
             >
               The only app that helps you honor oaths, not just make them.
             </motion.h1>
@@ -40,7 +40,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl mb-8 opacity-95 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl mb-8 opacity-95 leading-relaxed text-center"
             >
               AI analyzes every commitment and schedules smart notifications. Track honored vs. missed—brutal honesty about keeping your word.
             </motion.p>
@@ -50,6 +50,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex justify-center"
             >
               <Button href="#download" variant="primary" className="text-lg px-10 py-4">
                 Download for iOS
@@ -69,7 +70,7 @@ export default function Home() {
             <h2 className="text-heading-lg md:text-4xl mb-4">
               What makes Oath different
             </h2>
-            <p className="text-oath-text-secondary text-lg max-w-2xl mx-auto">
+            <p className="text-oath-text-secondary text-lg">
               Not just another to-do app. Oath focuses on what matters: keeping your word.
             </p>
           </motion.div>
@@ -129,7 +130,7 @@ export default function Home() {
               <h2 className="text-heading-lg md:text-4xl mb-4">
                 How it works
               </h2>
-              <p className="text-oath-text-secondary text-lg max-w-2xl mx-auto">
+              <p className="text-oath-text-secondary text-lg">
                 Three simple steps to honoring your commitments
               </p>
             </motion.div>
@@ -233,7 +234,7 @@ export default function Home() {
             <h2 className="text-heading-lg md:text-4xl mb-4">
               Smart notifications that understand complexity
             </h2>
-            <p className="text-oath-text-secondary text-lg max-w-2xl mx-auto">
+            <p className="text-oath-text-secondary text-lg">
               Not all tasks are equal. Oath Keeper adapts to what you're actually trying to accomplish.
             </p>
           </motion.div>
