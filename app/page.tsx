@@ -252,7 +252,7 @@ export default function Home() {
               }}
               className="text-center p-8"
               style={{
-                backgroundColor: 'var(--oath-surface)',
+                backgroundColor: 'var(--oath-container)',
                 border: '2px solid var(--oath-emerald-primary)',
                 borderRadius: '16px',
                 boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',
@@ -285,7 +285,7 @@ export default function Home() {
               }}
               className="text-center p-8"
               style={{
-                backgroundColor: 'var(--oath-surface)',
+                backgroundColor: 'var(--oath-container)',
                 border: '2px solid var(--oath-emerald-primary)',
                 borderRadius: '16px',
                 boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',

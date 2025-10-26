@@ -40,6 +40,7 @@
      ============================================ */
   --oath-bg: #FFFFFF;
   --oath-surface: #FAFBFC;
+  --oath-container: #FFFFFF;
   --oath-text: #111827;
   --oath-text-secondary: #6B7280;
   --oath-hairline: #E5E7EB;
@@ -150,6 +151,7 @@
   :root {
     --oath-bg: #000000;
     --oath-surface: #1F2124;
+    --oath-container: #0B0C0D;
     --oath-text: #FFFFFF;
     --oath-text-secondary: #9CA3AF;
     --oath-hairline: #262B30;
