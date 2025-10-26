@@ -32,6 +32,7 @@ export default function Button({
       <motion.div
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
+        className="inline-block"
       >
         <Link href={href} className={combinedClassName}>
           {children}
