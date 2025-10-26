@@ -40,7 +40,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl mb-8 opacity-95 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl mb-8 opacity-95 max-w-3xl mx-auto leading-relaxed text-center"
             >
               AI analyzes every commitment and schedules smart notifications. Track honored vs. missed—brutal honesty about keeping your word.
             </motion.p>
@@ -50,6 +50,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex justify-center"
             >
               <Button href="#download" variant="primary" className="text-lg px-10 py-4">
                 Download for iOS
