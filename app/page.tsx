@@ -245,18 +245,29 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)',
+                transition: { duration: 0.15 }
+              }}
+              className="text-center p-8"
+              style={{
+                backgroundColor: 'var(--oath-surface)',
+                border: '2px solid var(--oath-emerald-primary)',
+                borderRadius: '16px',
+                boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              }}
             >
-              <div className="bg-oath-bg-surface rounded-oath-lg p-6 mb-4">
-                <p className="font-semibold text-lg mb-2">Simple task</p>
+              <div className="mb-6">
+                <p className="font-semibold text-lg mb-2" style={{ color: 'var(--oath-text)' }}>Simple task</p>
                 <p className="text-oath-text-secondary">"Take out trash 8 PM"</p>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 mb-6">
                 <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', border: '1px solid var(--oath-emerald-primary)', borderRadius: '16px' }}>
                   ✓ 7:45 PM: Reminder in 15 minutes
                 </div>
               </div>
-              <p className="text-caption text-oath-text-secondary mt-4">
+              <p className="text-caption text-oath-text-secondary">
                 One timely reminder
               </p>
             </motion.div>
@@ -267,13 +278,24 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-center"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)',
+                transition: { duration: 0.15 }
+              }}
+              className="text-center p-8"
+              style={{
+                backgroundColor: 'var(--oath-surface)',
+                border: '2px solid var(--oath-emerald-primary)',
+                borderRadius: '16px',
+                boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              }}
             >
-              <div className="bg-oath-bg-surface rounded-oath-lg p-6 mb-4">
-                <p className="font-semibold text-lg mb-2">Complex task</p>
+              <div className="mb-6">
+                <p className="font-semibold text-lg mb-2" style={{ color: 'var(--oath-text)' }}>Complex task</p>
                 <p className="text-oath-text-secondary">"Complete quarterly report Friday 5 PM"</p>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 mb-6">
                 <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', border: '1px solid var(--oath-emerald-primary)', borderRadius: '16px' }}>
                   ✓ Monday: Start gathering data
                 </div>
@@ -290,7 +312,7 @@ export default function Home() {
                   ✓ Friday 4:30 PM: Due in 30 minutes
                 </div>
               </div>
-              <p className="text-caption text-oath-text-secondary mt-4">
+              <p className="text-caption text-oath-text-secondary">
                 Multiple strategic reminders over days
               </p>
             </motion.div>
