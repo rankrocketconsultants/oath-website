@@ -11,8 +11,10 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-oath-bg border-b border-oath-hairline backdrop-blur-sm bg-opacity-95">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-oath-emerald-primary hover:text-oath-emerald-deep transition-colors">
+        <Link href="/" className="text-2xl font-bold">
+          <span className="bg-gradient-to-r from-oath-emerald-primary to-oath-emerald-deep bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
             Oath.
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
