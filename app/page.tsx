@@ -67,10 +67,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-heading-lg md:text-4xl mb-4">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
               What makes Oath different
             </h2>
-            <p className="text-oath-text-secondary text-lg">
+            <p className="text-oath-text-secondary text-xl">
               Not just another to-do app. Oath focuses on what matters: keeping your word.
             </p>
           </motion.div>
@@ -127,10 +127,10 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-heading-lg md:text-4xl mb-4">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4">
                 How it works
               </h2>
-              <p className="text-oath-text-secondary text-lg">
+              <p className="text-oath-text-secondary text-xl">
                 Three simple steps to honoring your commitments
               </p>
             </motion.div>
@@ -231,10 +231,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-heading-lg md:text-4xl mb-4">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
               Smart notifications that understand complexity
             </h2>
-            <p className="text-oath-text-secondary text-lg">
+            <p className="text-oath-text-secondary text-xl">
               Not all tasks are equal. Oath Keeper adapts to what you're actually trying to accomplish.
             </p>
           </motion.div>
@@ -305,7 +305,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-heading-lg md:text-4xl mb-4">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
               Start honoring your commitments
             </h2>
             <p className="text-xl mb-8 opacity-95">
