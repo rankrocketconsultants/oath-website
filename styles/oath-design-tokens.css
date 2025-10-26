@@ -159,8 +159,8 @@
     --oath-text-secondary: #9CA3AF;
     --oath-hairline: #262B30;
 
-    /* Reminder card shadows (dark mode) - use subtle light glow + hairline border */
-    --oath-card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 255, 255, 0.02);
+    /* Reminder card shadows (dark mode) - use gold glow for floating effect */
+    --oath-card-shadow: 0 3px 6px rgba(235, 223, 164, 0.15), 0 2px 4px rgba(235, 223, 164, 0.1), 0 0 12px rgba(235, 223, 164, 0.08);
 
     /* Gold brand miss colors change in dark mode */
     --oath-miss-gold-dark-bg: #C7CFD9;
