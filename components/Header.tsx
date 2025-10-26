@@ -13,7 +13,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold">
           <span className="bg-gradient-to-r from-oath-emerald-primary to-oath-emerald-deep bg-clip-text text-transparent">
-            Oath
+            Oath.
           </span>
         </Link>
 

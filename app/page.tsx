@@ -15,26 +15,41 @@ export default function Home() {
         {/* Hero Section */}
         <section className="oath-gradient-hero-emerald text-white px-6 py-20 md:py-32">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Large Brand Mark */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8"
+            >
+              Oath.
+            </motion.div>
+
+            {/* Main Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-heading-xl md:text-5xl lg:text-6xl mb-6"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
             >
-              Honor your commitments with intelligent reminders
+              The only app that helps you honor oaths, not just make them.
             </motion.h1>
+
+            {/* Subheading */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl md:text-2xl mb-8 opacity-95 max-w-2xl mx-auto"
+              className="text-lg md:text-xl mb-8 opacity-95 max-w-3xl mx-auto leading-relaxed"
             >
-              Oath uses AI to understand task complexity and creates smart notification schedules. Keep your word—to yourself and others.
+              AI analyzes every commitment and schedules smart notifications. Track honored vs. missed—brutal honesty about keeping your word.
             </motion.p>
+
+            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Button href="#download" variant="primary" className="text-lg px-10 py-4">
                 Download for iOS
