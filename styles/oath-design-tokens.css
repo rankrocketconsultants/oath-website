@@ -45,6 +45,9 @@
   --oath-text-secondary: #6B7280;
   --oath-hairline: #E5E7EB;
 
+  /* Reminder card shadows (light mode) */
+  --oath-card-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+
   /* ============================================
      MISS/FAILURE STATE - EMERALD BRAND
      ============================================ */
@@ -155,6 +158,9 @@
     --oath-text: #FFFFFF;
     --oath-text-secondary: #9CA3AF;
     --oath-hairline: #262B30;
+
+    /* Reminder card shadows (dark mode) - use subtle light glow + hairline border */
+    --oath-card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 255, 255, 0.02);
 
     /* Gold brand miss colors change in dark mode */
     --oath-miss-gold-dark-bg: #C7CFD9;
