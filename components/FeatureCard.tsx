@@ -20,7 +20,7 @@ export default function FeatureCard({ icon, title, description }: FeatureCardPro
         scale: 1.05,
         boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)'
       }}
-      viewport={{ once: false, amount: 0.3 }}
+      viewport={{ once: false, amount: 0.6 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="p-8 text-center"
       style={{
