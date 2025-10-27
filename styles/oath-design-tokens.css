@@ -180,14 +180,18 @@
    GRADIENTS (as CSS classes)
    ============================================ */
 
-/* Hero Gradient - Top to bottom */
+/* Hero Gradient - Top to bottom with fade to black */
 .oath-gradient-hero-emerald {
   background: linear-gradient(
     to bottom,
-    var(--oath-emerald-deep),
-    var(--oath-emerald-primary) 30%,
-    var(--oath-emerald-primary) 70%,
-    var(--oath-emerald-bright)
+    var(--oath-emerald-deep) 0%,
+    var(--oath-emerald-primary) 25%,
+    var(--oath-emerald-primary) 50%,
+    var(--oath-emerald-bright) 70%,
+    rgba(35, 225, 178, 0.5) 82%,
+    rgba(15, 170, 119, 0.3) 88%,
+    rgba(0, 0, 0, 0.7) 94%,
+    #000000 100%
   );
 }
 
