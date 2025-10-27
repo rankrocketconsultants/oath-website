@@ -13,7 +13,7 @@ export default function Home() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="oath-gradient-hero-emerald text-white px-6 py-20 md:py-32 pb-32 md:pb-48">
+        <section className="oath-gradient-hero-emerald text-white px-6 py-20 md:py-32">
           <div className="max-w-4xl mx-auto">
             {/* Large Brand Mark */}
             <motion.div
