@@ -242,20 +242,25 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Simple Task Example */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)',
-                transition: { duration: 0.15 }
+              initial={{
+                opacity: 0,
+                y: 20,
+                scale: 0.95,
+                boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                scale: 1.05,
+                boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)'
+              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-center p-8"
               style={{
                 backgroundColor: 'var(--oath-container)',
                 border: '2px solid var(--oath-emerald-primary)',
                 borderRadius: '16px',
-                boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',
               }}
             >
               <div className="mb-6">
@@ -274,21 +279,25 @@ export default function Home() {
 
             {/* Complex Task Example */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)',
-                transition: { duration: 0.15 }
+              initial={{
+                opacity: 0,
+                y: 20,
+                scale: 0.95,
+                boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                scale: 1.05,
+                boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)'
+              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
               className="text-center p-8"
               style={{
                 backgroundColor: 'var(--oath-container)',
                 border: '2px solid var(--oath-emerald-primary)',
                 borderRadius: '16px',
-                boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',
               }}
             >
               <div className="mb-6">
