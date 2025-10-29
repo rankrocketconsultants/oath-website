@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="5120" height="2880" viewBox="0 0 5120 2880" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0B0C0D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="5120" height="2880" fill="url(#bgGradient)"/>
+
+  <!-- Centered vertical bars taking up most of the screen -->
+  <g transform="translate(2560, 1440)">
+    <!-- Bar 1 - Deep Emerald -->
+    <rect x="-1735" y="-1200" width="470" height="2400" rx="32" fill="#067B60"/>
+
+    <!-- Bar 2 - Emerald Primary -->
+    <rect x="-1235" y="-1200" width="470" height="2400" rx="32" fill="#0FAA77"/>
+
+    <!-- Bar 3 - Bright Emerald -->
+    <rect x="-735" y="-1200" width="470" height="2400" rx="32" fill="#23E1B2"/>
+
+    <!-- Bar 4 - Light transition -->
+    <rect x="-235" y="-1200" width="470" height="2400" rx="32" fill="#B8E6D5"/>
+
+    <!-- Bar 5 - Gold transition -->
+    <rect x="265" y="-1200" width="470" height="2400" rx="32" fill="#FFF9E6"/>
+
+    <!-- Bar 6 - Gold Primary -->
+    <rect x="765" y="-1200" width="470" height="2400" rx="32" fill="#EBDFA4"/>
+
+    <!-- Bar 7 - Gold Deep -->
+    <rect x="1265" y="-1200" width="470" height="2400" rx="32" fill="#BFA35A"/>
+  </g>
+
+  <!-- Oath. text centered on top -->
+  <text x="2560" y="1440"
+        font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+        font-size="580"
+        font-weight="700"
+        fill="#FFFFFF"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        style="paint-order: stroke fill; stroke: rgba(0,0,0,0.3); stroke-width: 10;">Oath.</text>
+</svg>

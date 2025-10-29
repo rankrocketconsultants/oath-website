@@ -129,47 +129,197 @@ export default function Contact() {
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div>
                 <h2 className="text-heading-md mb-4">Get in Touch</h2>
                 <p className="text-oath-text-secondary mb-6">
-                  Whether you have questions, feedback, or need support, we're here to help.
+                  Choose the right contact for your inquiry to get a faster response.
                 </p>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-oath-text mb-2">Email</h3>
-                <a
-                  href="mailto:support@oath.app"
-                  className="text-oath-emerald-primary hover:underline"
-                >
-                  support@oath.app
-                </a>
+              {/* Contact Categories */}
+              <div className="space-y-4">
+                {/* General Support */}
+                <div className="border border-oath-hairline rounded-oath-lg p-4 hover:border-oath-emerald-primary transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-oath-emerald-surface rounded-oath-md flex items-center justify-center">
+                      <span className="text-oath-emerald-primary text-xl">💬</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-oath-text mb-1">General Support</h3>
+                      <p className="text-oath-text-secondary text-small mb-2">
+                        App issues, feature questions, or general help
+                      </p>
+                      <a
+                        href="mailto:support@theoath.app"
+                        className="text-oath-emerald-primary hover:underline text-small break-all"
+                      >
+                        support@theoath.app
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Privacy & Legal */}
+                <div className="border border-oath-hairline rounded-oath-lg p-4 hover:border-oath-emerald-primary transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-oath-emerald-surface rounded-oath-md flex items-center justify-center">
+                      <span className="text-oath-emerald-primary text-xl">🔒</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-oath-text mb-1">Privacy & Legal</h3>
+                      <p className="text-oath-text-secondary text-small mb-2">
+                        Data requests, CCPA opt-outs, account deletion
+                      </p>
+                      <a
+                        href="mailto:privacy@theoath.app"
+                        className="text-oath-emerald-primary hover:underline text-small break-all"
+                      >
+                        privacy@theoath.app
+                      </a>
+                      <p className="text-oath-text-secondary text-small mt-2">
+                        Response within 30 days per CCPA
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Security */}
+                <div className="border border-oath-hairline rounded-oath-lg p-4 hover:border-oath-emerald-primary transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-oath-emerald-surface rounded-oath-md flex items-center justify-center">
+                      <span className="text-oath-emerald-primary text-xl">🛡️</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-oath-text mb-1">Security Issues</h3>
+                      <p className="text-oath-text-secondary text-small mb-2">
+                        Report vulnerabilities or security concerns
+                      </p>
+                      <a
+                        href="mailto:security@theoath.app"
+                        className="text-oath-emerald-primary hover:underline text-small break-all"
+                      >
+                        security@theoath.app
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Billing & Subscriptions */}
+                <div className="border border-oath-hairline rounded-oath-lg p-4 hover:border-oath-emerald-primary transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-oath-emerald-surface rounded-oath-md flex items-center justify-center">
+                      <span className="text-oath-emerald-primary text-xl">💳</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-oath-text mb-1">Billing & Subscriptions</h3>
+                      <p className="text-oath-text-secondary text-small mb-2">
+                        Payment issues, refunds, subscription changes
+                      </p>
+                      <a
+                        href="mailto:billing@theoath.app"
+                        className="text-oath-emerald-primary hover:underline text-small break-all"
+                      >
+                        billing@theoath.app
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Business Inquiries */}
+                <div className="border border-oath-hairline rounded-oath-lg p-4 hover:border-oath-emerald-primary transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-oath-emerald-surface rounded-oath-md flex items-center justify-center">
+                      <span className="text-oath-emerald-primary text-xl">🤝</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-oath-text mb-1">Business & Partnerships</h3>
+                      <p className="text-oath-text-secondary text-small mb-2">
+                        Enterprise inquiries, partnerships, collaborations
+                      </p>
+                      <a
+                        href="mailto:business@theoath.app"
+                        className="text-oath-emerald-primary hover:underline text-small break-all"
+                      >
+                        business@theoath.app
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Press & Media */}
+                <div className="border border-oath-hairline rounded-oath-lg p-4 hover:border-oath-emerald-primary transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-oath-emerald-surface rounded-oath-md flex items-center justify-center">
+                      <span className="text-oath-emerald-primary text-xl">📰</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-oath-text mb-1">Press & Media</h3>
+                      <p className="text-oath-text-secondary text-small mb-2">
+                        Media inquiries, press kits, interviews
+                      </p>
+                      <a
+                        href="mailto:press@theoath.app"
+                        className="text-oath-emerald-primary hover:underline text-small break-all"
+                      >
+                        press@theoath.app
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-oath-text mb-2">Support</h3>
-                <p className="text-oath-text-secondary">
-                  For app-specific issues, check out our <a href="/faq" className="text-oath-emerald-primary hover:underline">FAQ page</a> for quick answers to common questions.
+              {/* Response Time Info */}
+              <div className="bg-oath-bg-surface rounded-oath-lg p-6 mt-6">
+                <h3 className="font-semibold text-oath-text mb-3">Response Times</h3>
+                <ul className="space-y-2 text-oath-text-secondary text-small">
+                  <li className="flex items-start gap-2">
+                    <span className="text-oath-emerald-primary">•</span>
+                    <span><strong>General Support:</strong> 24-48 hours</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-oath-emerald-primary">•</span>
+                    <span><strong>Privacy Requests:</strong> Within 30 days (CCPA)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-oath-emerald-primary">•</span>
+                    <span><strong>Security Issues:</strong> 24 hours or less</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-oath-emerald-primary">•</span>
+                    <span><strong>Business Inquiries:</strong> 3-5 business days</span>
+                  </li>
+                </ul>
+                <p className="text-oath-text-secondary text-small mt-4">
+                  For urgent issues, include "URGENT" in your subject line.
                 </p>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-oath-text mb-2">Privacy & Legal</h3>
-                <p className="text-oath-text-secondary">
-                  Questions about data privacy or terms of service? Visit our{' '}
-                  <a href="/privacy" className="text-oath-emerald-primary hover:underline">Privacy Policy</a>
-                  {' '}or{' '}
-                  <a href="/terms" className="text-oath-emerald-primary hover:underline">Terms of Service</a>
-                  {' '}pages.
-                </p>
-              </div>
-
-              <div className="bg-oath-bg-surface rounded-oath-lg p-6">
-                <h3 className="font-semibold text-oath-text mb-3">Response Time</h3>
-                <p className="text-oath-text-secondary text-small">
-                  We typically respond to inquiries within 24-48 hours during business days. For urgent issues, please include "URGENT" in your subject line.
-                </p>
+              {/* Quick Links */}
+              <div className="border-t border-oath-hairline pt-6 mt-6">
+                <h3 className="font-semibold text-oath-text mb-3">Quick Links</h3>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="/faq"
+                    className="text-oath-emerald-primary hover:underline text-small"
+                  >
+                    FAQ
+                  </a>
+                  <span className="text-oath-text-secondary">•</span>
+                  <a
+                    href="/privacy"
+                    className="text-oath-emerald-primary hover:underline text-small"
+                  >
+                    Privacy Policy
+                  </a>
+                  <span className="text-oath-text-secondary">•</span>
+                  <a
+                    href="/terms"
+                    className="text-oath-emerald-primary hover:underline text-small"
+                  >
+                    Terms of Service
+                  </a>
+                </div>
               </div>
             </div>
           </div>
