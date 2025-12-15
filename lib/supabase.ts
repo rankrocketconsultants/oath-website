@@ -1,6 +1,7 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
-let supabaseInstance: SupabaseClient | null = null
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let supabaseInstance: any = null
 
 export function getSupabase() {
   if (supabaseInstance) return supabaseInstance
