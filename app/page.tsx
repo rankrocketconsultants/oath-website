@@ -1,164 +1,301 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Button from '@/components/Button';
-import FeatureCard from '@/components/FeatureCard';
+import FloatingElements from '@/components/FloatingElements';
 
 export default function Home() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setStatus('error');
+        setMessage(data.error || 'Something went wrong');
+        return;
+      }
+
+      setStatus('success');
+      setMessage('You\'re on the list!');
+      setEmail('');
+    } catch {
+      setStatus('error');
+      setMessage('Something went wrong');
+    }
+  };
+
   return (
     <>
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="oath-gradient-hero-emerald text-white px-6 py-20 md:py-32">
-          <div className="max-w-4xl mx-auto">
-            {/* Large Brand Mark */}
+        <section className="relative min-h-screen flex items-center justify-center bg-white dark:bg-black overflow-hidden">
+          {/* Floating UI Elements */}
+          <FloatingElements />
+
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-transparent to-transparent dark:from-emerald-950/20 dark:via-transparent dark:to-transparent" />
+
+          {/* Hero Content */}
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-center"
+              transition={{ duration: 0.6 }}
             >
-              Oath.
+              <span className="inline-block text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-8">
+                AI-Powered Commitment Tracking
+              </span>
             </motion.div>
 
-            {/* Main Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-center"
+              className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight"
             >
-              The only app that helps you honor oaths, not just make them.
+              Keep your word.
             </motion.h1>
 
-            {/* Subheading */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl mb-8 opacity-95 leading-relaxed text-center"
+              className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
+              style={{ marginBottom: '3rem' }}
             >
-              AI analyzes every commitment and schedules smart notifications. Track honored vs. missed—brutal honesty about keeping your word.
+              Oath understands task complexity and schedules smart reminders.
+              Track what you honored vs. missed—honest accountability.
             </motion.p>
 
-            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex justify-center"
+              className="flex flex-col items-center"
+              style={{ gap: '0.25rem' }}
             >
-              <Button href="#download" variant="primary" className="text-lg px-10 py-4">
-                Download for iOS
-              </Button>
+              <Link
+                href="#waitlist"
+                className="px-8 py-4 rounded-full font-medium hover:opacity-90 transition-opacity text-lg text-[#0B0C0D]"
+                style={{ background: 'linear-gradient(135deg, #FFF9E6 0%, #EBDFA4 50%, #BFA35A 100%)' }}
+              >
+                Join the Waitlist
+              </Link>
+              <Link
+                href="#features"
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-lg py-2"
+              >
+                Learn more →
+              </Link>
+              <p className="text-sm text-gray-500 dark:text-gray-500">
+                Coming to iOS · Early 2026
+              </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Key Features Section */}
-        <section className="max-w-7xl mx-auto px-6 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-              What makes Oath different
-            </h2>
-            <p className="text-oath-text-secondary text-xl">
-              Not just another to-do app. Oath focuses on what matters: keeping your word.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <FeatureCard
-              icon={
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              }
-              title="AI-Powered Notifications"
-              description="Oath Keeper analyzes task complexity and schedules appropriate notifications. A complex project gets days of reminders, a simple errand gets one."
-            />
-
-            <FeatureCard
-              icon={
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              }
-              title="Honor Tracking"
-              description="See which commitments you honored vs. which you missed. Honest accountability for personal growth, without gamification or guilt."
-            />
-
-            <FeatureCard
-              icon={
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              }
-              title="Lightning-Fast Entry"
-              description="Type 'Walk the dogs 11:30 PM' and Oath creates the task instantly. Natural language processing means no forms, no friction."
-            />
-
-            <FeatureCard
-              icon={
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                </svg>
-              }
-              title="Beautiful Simplicity"
-              description="Clean, distraction-free interface. No gamification, no streaks, no guilt-tripping. Just tasks, events, and honest tracking."
-            />
-          </div>
-        </section>
-
-        {/* How It Works Section */}
-        <section className="bg-oath-bg-surface py-20">
-          <div className="max-w-7xl mx-auto px-6">
+        {/* Features Section */}
+        <section id="features" className="py-32 bg-gray-50 dark:bg-[#0C0C0D]">
+          <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-20"
             >
-              <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Not another to-do app
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-400" style={{ textAlign: 'center' }}>
+                AI that understands your tasks. Reminders that actually help.<br /> Accountability that drives real change.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Feature 1 - AI Reminders (Blue/Work) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+                style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+              >
+                <div className="w-[6px] flex-shrink-0 bg-blue-500" />
+                <div className="flex-1 p-6">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: 'rgba(59, 130, 246, 0.15)' }}
+                  >
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    AI-Powered Reminders
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-[15px] leading-relaxed">
+                    Oath analyzes task complexity and schedules appropriate notifications. A complex project gets days of reminders, a simple errand gets one timely alert.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Feature 2 - Honor Tracking (Emerald) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+                style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+              >
+                <div className="w-[6px] flex-shrink-0 bg-[#0FAA77]" />
+                <div className="flex-1 p-6">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: 'rgba(15, 170, 119, 0.15)' }}
+                  >
+                    <svg className="w-5 h-5 text-[#0FAA77]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    Honor Tracking
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-[15px] leading-relaxed">
+                    See which commitments you honored vs. which you missed. Honest accountability for personal growth, without gamification or guilt-tripping.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Feature 3 - Lightning Fast (Orange/Personal) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+                style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+              >
+                <div className="w-[6px] flex-shrink-0 bg-orange-500" />
+                <div className="flex-1 p-6">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: 'rgba(249, 115, 22, 0.15)' }}
+                  >
+                    <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    Lightning-Fast Entry
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-[15px] leading-relaxed">
+                    Type "Walk the dogs 11:30 PM" and Oath creates the task instantly. Natural language processing means no forms, no friction, no wasted time.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Feature 4 - Beautiful Simplicity (Purple/Social) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+                style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+              >
+                <div className="w-[6px] flex-shrink-0 bg-purple-500" />
+                <div className="flex-1 p-6">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: 'rgba(168, 85, 247, 0.15)' }}
+                  >
+                    <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    Beautiful Simplicity
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-[15px] leading-relaxed">
+                    Clean, distraction-free interface designed for focus. No gamification, no streaks, no social features. Just you and your commitments.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section className="py-32 bg-white dark:bg-black">
+          <div className="max-w-6xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-20"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 How it works
               </h2>
-              <p className="text-oath-text-secondary text-xl">
+              <p className="text-xl text-gray-600 dark:text-gray-400" style={{ textAlign: 'center' }}>
                 Three simple steps to honoring your commitments
               </p>
             </motion.div>
 
-            <div className="space-y-16">
+            <div className="space-y-24">
               {/* Step 1 */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+                className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
               >
                 <div className="order-2 md:order-1">
-                  <div className="w-12 h-12 rounded-full bg-oath-emerald-primary text-white flex items-center justify-center text-2xl font-bold mb-4">
-                    1
-                  </div>
-                  <h3 className="text-heading-md mb-3">Create</h3>
-                  <p className="text-oath-text-secondary text-lg">
-                    Add commitments instantly with natural language. "Walk the dogs 11:30 PM" becomes a task in seconds.
+                  <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4 block">Step 1</span>
+                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Create</h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Add commitments instantly with natural language. "Walk the dogs 11:30 PM" becomes a task in seconds. No complicated forms or menus.
                   </p>
                 </div>
                 <div className="order-1 md:order-2 flex justify-center">
-                  <div className="relative w-64 h-96 bg-gray-200 rounded-oath-lg overflow-hidden shadow-oath-xl">
+                  {/* Light mode mockup */}
+                  <div className="relative w-[280px] md:w-[320px] dark:hidden">
                     <Image
-                      src="/images/screenshots/IMG_4273.PNG"
+                      src="/images/mockups/home-light-cropped.png"
                       alt="Oath app home screen"
-                      fill
-                      className="object-cover"
+                      width={920}
+                      height={1370}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  {/* Dark mode mockup */}
+                  <div className="relative w-[280px] md:w-[320px] hidden dark:block">
+                    <Image
+                      src="/images/mockups/home-dark-cropped.png"
+                      alt="Oath app home screen"
+                      width={920}
+                      height={1370}
+                      className="w-full h-auto"
                     />
                   </div>
                 </div>
@@ -166,55 +303,75 @@ export default function Home() {
 
               {/* Step 2 */}
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+                className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
               >
                 <div className="flex justify-center">
-                  <div className="relative w-64 h-96 bg-gray-200 rounded-oath-lg overflow-hidden shadow-oath-xl">
+                  {/* Light mode mockup */}
+                  <div className="relative w-[280px] md:w-[320px] dark:hidden">
                     <Image
-                      src="/images/screenshots/IMG_4277.PNG"
-                      alt="Oath AI analysis"
-                      fill
-                      className="object-cover"
+                      src="/images/mockups/notifications-light-cropped.png"
+                      alt="Oath notifications"
+                      width={920}
+                      height={1370}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  {/* Dark mode mockup */}
+                  <div className="relative w-[280px] md:w-[320px] hidden dark:block">
+                    <Image
+                      src="/images/mockups/notifications-dark-cropped.png"
+                      alt="Oath notifications"
+                      width={920}
+                      height={1370}
+                      className="w-full h-auto"
                     />
                   </div>
                 </div>
                 <div>
-                  <div className="w-12 h-12 rounded-full bg-oath-emerald-primary text-white flex items-center justify-center text-2xl font-bold mb-4">
-                    2
-                  </div>
-                  <h3 className="text-heading-md mb-3">Get Reminded</h3>
-                  <p className="text-oath-text-secondary text-lg">
-                    Oath Keeper analyzes complexity and schedules smart notifications. Complex tasks get multi-day reminders, simple ones get timely alerts.
+                  <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4 block">Step 2</span>
+                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Get Reminded</h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Oath's AI analyzes complexity and schedules smart notifications. Complex tasks get multi-day reminders, simple ones get timely alerts.
                   </p>
                 </div>
               </motion.div>
 
               {/* Step 3 */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+                className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
               >
                 <div className="order-2 md:order-1">
-                  <div className="w-12 h-12 rounded-full bg-oath-emerald-primary text-white flex items-center justify-center text-2xl font-bold mb-4">
-                    3
-                  </div>
-                  <h3 className="text-heading-md mb-3">Honor</h3>
-                  <p className="text-oath-text-secondary text-lg">
-                    Mark commitments honored or missed. Honest tracking shows your real accountability—no hiding, just facts.
+                  <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4 block">Step 3</span>
+                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Honor</h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Mark commitments honored or missed. See your accountability clearly in the ledger—no hiding, just honest facts about keeping your word.
                   </p>
                 </div>
                 <div className="order-1 md:order-2 flex justify-center">
-                  <div className="relative w-64 h-96 bg-gray-200 rounded-oath-lg overflow-hidden shadow-oath-xl">
+                  {/* Light mode mockup */}
+                  <div className="relative w-[280px] md:w-[320px] dark:hidden">
                     <Image
-                      src="/images/screenshots/IMG_4281.PNG"
+                      src="/images/mockups/ledger-light-cropped.png"
                       alt="Oath ledger tracking"
-                      fill
-                      className="object-cover"
+                      width={920}
+                      height={1370}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  {/* Dark mode mockup */}
+                  <div className="relative w-[280px] md:w-[320px] hidden dark:block">
+                    <Image
+                      src="/images/mockups/ledger-dark-cropped.png"
+                      alt="Oath ledger tracking"
+                      width={920}
+                      height={1370}
+                      className="w-full h-auto"
                     />
                   </div>
                 </div>
@@ -224,132 +381,268 @@ export default function Home() {
         </section>
 
         {/* AI Showcase Section */}
-        <section className="max-w-7xl mx-auto px-6 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-              Smart notifications that understand complexity
-            </h2>
-            <p className="text-oath-text-secondary text-xl">
-              Not all tasks are equal. Oath Keeper adapts to what you're actually trying to accomplish.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Simple Task Example */}
+        <section className="py-32 bg-gray-50 dark:bg-[#0C0C0D]">
+          <div className="max-w-6xl mx-auto px-6">
             <motion.div
-              initial={{
-                scale: 0.95,
-                boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-              }}
-              whileInView={{
-                scale: 1.05,
-                boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)'
-              }}
-              viewport={{ once: false, amount: 0.6 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-center p-8"
-              style={{
-                backgroundColor: 'var(--oath-container)',
-                border: '2px solid var(--oath-emerald-primary)',
-                borderRadius: '16px',
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-20"
             >
-              <div className="mb-6">
-                <p className="font-semibold text-lg mb-2" style={{ color: 'var(--oath-text)' }}>Simple task</p>
-                <p className="text-oath-text-secondary">"Take out trash 8 PM"</p>
-              </div>
-              <div className="space-y-2 mb-6">
-                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', borderRadius: '16px', boxShadow: 'var(--oath-card-shadow)' }}>
-                  ✓ 7:45 PM: Reminder in 15 minutes
-                </div>
-              </div>
-              <p className="text-caption text-oath-text-secondary">
-                One timely reminder
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Smart reminders that adapt
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-400" style={{ textAlign: 'center' }}>
+                Not all tasks are equal. Oath adapts to what you're actually trying to accomplish.
               </p>
             </motion.div>
 
-            {/* Complex Task Example */}
-            <motion.div
-              initial={{
-                scale: 0.95,
-                boxShadow: '0 0 5px rgba(15, 170, 119, 0.3), 0 0 15px rgba(15, 170, 119, 0.35), 0 0 30px rgba(15, 170, 119, 0.25), 0 0 50px rgba(15, 170, 119, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-              }}
-              whileInView={{
-                scale: 1.05,
-                boxShadow: '0 0 8px rgba(15, 170, 119, 0.45), 0 0 20px rgba(15, 170, 119, 0.5), 0 0 40px rgba(15, 170, 119, 0.35), 0 0 60px rgba(15, 170, 119, 0.3), 0 8px 12px -2px rgba(0, 0, 0, 0.15)'
-              }}
-              viewport={{ once: false, amount: 0.6 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="text-center p-8"
-              style={{
-                backgroundColor: 'var(--oath-container)',
-                border: '2px solid var(--oath-emerald-primary)',
-                borderRadius: '16px',
-              }}
-            >
-              <div className="mb-6">
-                <p className="font-semibold text-lg mb-2" style={{ color: 'var(--oath-text)' }}>Complex task</p>
-                <p className="text-oath-text-secondary">"Complete quarterly report Friday 5 PM"</p>
-              </div>
-              <div className="space-y-2 mb-6">
-                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', borderRadius: '16px', boxShadow: 'var(--oath-card-shadow)' }}>
-                  ✓ Monday: Start gathering data
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Simple Task Example */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-white dark:bg-[#1A1A1B] rounded-3xl p-8 border border-gray-200 dark:border-gray-800"
+              >
+                <div className="mb-6">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">Simple task</span>
+                  <p className="text-xl font-semibold text-gray-900 dark:text-white mt-1">&quot;Take out trash 8 PM&quot;</p>
                 </div>
-                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', borderRadius: '16px', boxShadow: 'var(--oath-card-shadow)' }}>
-                  ✓ Tuesday: Continue analysis
+                {/* Light mode container */}
+                <div
+                  className="rounded-2xl p-4 dark:hidden"
+                  style={{
+                    background: 'linear-gradient(135deg, #67e8f9 0%, #10b981 50%, #a3e635 100%)',
+                  }}
+                >
+                  <div
+                    className="flex items-start gap-3 p-3 rounded-2xl border border-white/50"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.55)',
+                      backdropFilter: 'blur(16px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+                      boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
+                    }}
+                  >
+                    <Image src="/images/oath-icon.png" alt="Oath" width={40} height={40} className="rounded-[10px] flex-shrink-0 shadow-sm" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-gray-900">Take out trash</span>
+                        <span className="text-[11px] text-gray-500">7:45 PM</span>
+                      </div>
+                      <p className="text-[13px] text-gray-600 mt-0.5">Reminder in 15 minutes!</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', borderRadius: '16px', boxShadow: 'var(--oath-card-shadow)' }}>
-                  ✓ Thursday: Begin writing report
+                {/* Dark mode container */}
+                <div
+                  className="hidden dark:block rounded-2xl p-4"
+                  style={{
+                    background: 'linear-gradient(135deg, #0e7490 0%, #065f46 50%, #164e63 100%)',
+                  }}
+                >
+                  <div
+                    className="flex items-start gap-3 p-3 rounded-2xl border border-white/15"
+                    style={{
+                      background: 'rgba(60, 60, 67, 0.6)',
+                      backdropFilter: 'blur(16px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+                      boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                    }}
+                  >
+                    <Image src="/images/oath-icon.png" alt="Oath" width={40} height={40} className="rounded-[10px] flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-white">Take out trash</span>
+                        <span className="text-[11px] text-gray-400">7:45 PM</span>
+                      </div>
+                      <p className="text-[13px] text-gray-300 mt-0.5">Reminder in 15 minutes!</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', borderRadius: '16px', boxShadow: 'var(--oath-card-shadow)' }}>
-                  ✓ Friday 2 PM: Final review
+                <p className="mt-8 text-sm text-gray-500 dark:text-gray-500 text-center">
+                  One timely reminder is all you need
+                </p>
+              </motion.div>
+
+              {/* Complex Task Example */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="bg-white dark:bg-[#1A1A1B] rounded-3xl p-8 border border-gray-200 dark:border-gray-800"
+              >
+                <div className="mb-6">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">Complex task</span>
+                  <p className="text-xl font-semibold text-gray-900 dark:text-white mt-1">&quot;Quarterly report Friday 5 PM&quot;</p>
                 </div>
-                <div className="p-3 text-small" style={{ backgroundColor: 'var(--oath-surface)', color: 'var(--oath-text)', borderRadius: '16px', boxShadow: 'var(--oath-card-shadow)' }}>
-                  ✓ Friday 4:30 PM: Due in 30 minutes
+                {/* Light mode container */}
+                <div
+                  className="rounded-2xl p-4 space-y-2 dark:hidden"
+                  style={{
+                    background: 'linear-gradient(135deg, #2dd4bf 0%, #10b981 50%, #0ea5e9 100%)',
+                  }}
+                >
+                  <div className="flex items-start gap-3 p-3 rounded-2xl border border-white/50" style={{ background: 'rgba(255, 255, 255, 0.55)', backdropFilter: 'blur(16px) saturate(180%)', WebkitBackdropFilter: 'blur(16px) saturate(180%)', boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' }}>
+                    <Image src="/images/oath-icon.png" alt="Oath" width={40} height={40} className="rounded-[10px] flex-shrink-0 shadow-sm" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-gray-900">Quarterly report</span>
+                        <span className="text-[11px] text-gray-500">Mon</span>
+                      </div>
+                      <p className="text-[13px] text-gray-600 mt-0.5">Start gathering data for your report</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 rounded-2xl border border-white/50" style={{ background: 'rgba(255, 255, 255, 0.55)', backdropFilter: 'blur(16px) saturate(180%)', WebkitBackdropFilter: 'blur(16px) saturate(180%)', boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' }}>
+                    <Image src="/images/oath-icon.png" alt="Oath" width={40} height={40} className="rounded-[10px] flex-shrink-0 shadow-sm" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-gray-900">Quarterly report</span>
+                        <span className="text-[11px] text-gray-500">Wed</span>
+                      </div>
+                      <p className="text-[13px] text-gray-600 mt-0.5">Continue your analysis</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 rounded-2xl border border-white/50" style={{ background: 'rgba(255, 255, 255, 0.55)', backdropFilter: 'blur(16px) saturate(180%)', WebkitBackdropFilter: 'blur(16px) saturate(180%)', boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' }}>
+                    <Image src="/images/oath-icon.png" alt="Oath" width={40} height={40} className="rounded-[10px] flex-shrink-0 shadow-sm" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-gray-900">Quarterly report</span>
+                        <span className="text-[11px] text-gray-500">Fri 2 PM</span>
+                      </div>
+                      <p className="text-[13px] text-gray-600 mt-0.5">Time for final review before deadline</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <p className="text-caption text-oath-text-secondary">
-                Multiple strategic reminders over days
-              </p>
-            </motion.div>
+                {/* Dark mode container */}
+                <div
+                  className="hidden dark:block rounded-2xl p-4 space-y-2"
+                  style={{
+                    background: 'linear-gradient(135deg, #134e4a 0%, #064e3b 50%, #0c4a6e 100%)',
+                  }}
+                >
+                  <div className="flex items-start gap-3 p-3 rounded-2xl border border-white/15" style={{ background: 'rgba(60, 60, 67, 0.6)', backdropFilter: 'blur(16px) saturate(180%)', WebkitBackdropFilter: 'blur(16px) saturate(180%)', boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)' }}>
+                    <Image src="/images/oath-icon.png" alt="Oath" width={40} height={40} className="rounded-[10px] flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-white">Quarterly report</span>
+                        <span className="text-[11px] text-gray-400">Mon</span>
+                      </div>
+                      <p className="text-[13px] text-gray-300 mt-0.5">Start gathering data for your report</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 rounded-2xl border border-white/15" style={{ background: 'rgba(60, 60, 67, 0.6)', backdropFilter: 'blur(16px) saturate(180%)', WebkitBackdropFilter: 'blur(16px) saturate(180%)', boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)' }}>
+                    <Image src="/images/oath-icon.png" alt="Oath" width={40} height={40} className="rounded-[10px] flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-white">Quarterly report</span>
+                        <span className="text-[11px] text-gray-400">Wed</span>
+                      </div>
+                      <p className="text-[13px] text-gray-300 mt-0.5">Continue your analysis</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 rounded-2xl border border-white/15" style={{ background: 'rgba(60, 60, 67, 0.6)', backdropFilter: 'blur(16px) saturate(180%)', WebkitBackdropFilter: 'blur(16px) saturate(180%)', boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)' }}>
+                    <Image src="/images/oath-icon.png" alt="Oath" width={40} height={40} className="rounded-[10px] flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-white">Quarterly report</span>
+                        <span className="text-[11px] text-gray-400">Fri 2 PM</span>
+                      </div>
+                      <p className="text-[13px] text-gray-300 mt-0.5">Time for final review before deadline</p>
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-8 text-sm text-gray-500 dark:text-gray-500 text-center">
+                  Multiple strategic reminders over days
+                </p>
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* Final CTA Section */}
-        <section id="download" className="oath-gradient-hero-emerald text-white px-6 py-20">
+        {/* Social Proof Section */}
+        <section className="py-24 bg-white dark:bg-black border-y border-gray-200 dark:border-gray-800">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-2">100%</p>
+                <p className="text-gray-600 dark:text-gray-400">Privacy focused</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-2">0</p>
+                <p className="text-gray-600 dark:text-gray-400">Social features or distractions</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-2">∞</p>
+                <p className="text-gray-600 dark:text-gray-400">Commitment to your success</p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Waitlist CTA Section */}
+        <section id="waitlist" className="py-32 bg-gray-50 dark:bg-[#0C0C0D]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-2xl mx-auto px-6 text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-              Start honoring your commitments
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Be the first to know
             </h2>
-            <p className="text-xl mb-8 opacity-95">
-              Download Oath for iOS and keep your word—to yourself and others.
+            <p className="text-xl text-gray-600 dark:text-gray-400" style={{ marginBottom: '2.25rem' }}>
+              Join the waitlist and get early access when Oath launches on iOS.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                href="https://apps.apple.com"
-                className="bg-black hover:bg-gray-900 text-white px-8 py-4 text-lg"
+
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === 'loading' || status === 'success'}
+                className="flex-1 px-6 py-4 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1A1A1B] text-gray-900 dark:text-white placeholder-gray-500 outline-none ring-0 focus:border-[#BFA35A] transition-colors disabled:opacity-50"
+                style={{ outline: 'none', boxShadow: 'none' }}
+                required
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading' || status === 'success'}
+                className="px-8 py-4 rounded-full font-medium hover:opacity-90 transition-opacity whitespace-nowrap text-[#0B0C0D] disabled:opacity-50"
+                style={{ background: 'linear-gradient(135deg, #FFF9E6 0%, #EBDFA4 50%, #BFA35A 100%)' }}
               >
-                <div className="flex items-center gap-3">
-                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                  </svg>
-                  <div className="text-left">
-                    <div className="text-xs">Download on the</div>
-                    <div className="text-lg font-semibold -mt-1">App Store</div>
-                  </div>
-                </div>
-              </Button>
-            </div>
+                {status === 'loading' ? 'Joining...' : status === 'success' ? 'Joined!' : 'Join Waitlist'}
+              </button>
+            </form>
+
+            <p className="text-sm" style={{ marginTop: '1.33rem' }}>
+              {status === 'success' ? (
+                <span className="text-emerald-600 dark:text-emerald-400">{message}</span>
+              ) : status === 'error' ? (
+                <span className="text-red-500">{message}</span>
+              ) : (
+                <span className="text-gray-500 dark:text-gray-500">No spam. Unsubscribe anytime.</span>
+              )}
+            </p>
           </motion.div>
         </section>
       </main>

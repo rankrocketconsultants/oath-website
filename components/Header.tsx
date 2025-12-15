@@ -1,50 +1,78 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-oath-bg border-b border-oath-hairline backdrop-blur-sm bg-opacity-95">
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/80 dark:bg-black/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-800/50'
+          : 'bg-transparent'
+      }`}
+    >
+      <nav className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-oath-emerald-primary hover:text-oath-emerald-deep transition-colors">
-          Oath.
+        <Link
+          href="/"
+          className="text-xl font-semibold text-gray-900 dark:text-white hover:opacity-70 transition-opacity"
+        >
+          Oath
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
-          <Link href="/features" className="text-oath-text hover:text-oath-emerald-primary transition-colors">
+        <div className="hidden md:flex items-center gap-8">
+          <Link
+            href="/features"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+          >
             Features
           </Link>
-          <Link href="/about" className="text-oath-text hover:text-oath-emerald-primary transition-colors">
+          <Link
+            href="/about"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+          >
             About
           </Link>
-          <Link href="/faq" className="text-oath-text hover:text-oath-emerald-primary transition-colors">
+          <Link
+            href="/faq"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+          >
             FAQ
           </Link>
           <Link
-            href="#download"
-            className="px-6 py-2 bg-gradient-to-br from-oath-emerald-primary to-oath-emerald-deep text-white rounded-oath-md font-semibold hover:shadow-oath-md transition-all"
+            href="#waitlist"
+            className="text-sm font-medium px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity text-[#0B0C0D]"
+            style={{ background: 'linear-gradient(135deg, #FFF9E6 0%, #EBDFA4 50%, #BFA35A 100%)' }}
           >
-            Download
+            Join Waitlist
           </Link>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-oath-text"
+          className="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           aria-label="Toggle menu"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {mobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
         </button>
@@ -57,36 +85,38 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-oath-hairline bg-oath-bg"
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-lg border-t border-gray-200/50 dark:border-gray-800/50"
           >
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-6 py-6 space-y-4">
               <Link
                 href="/features"
-                className="block py-2 text-oath-text hover:text-oath-emerald-primary transition-colors"
+                className="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Features
               </Link>
               <Link
                 href="/about"
-                className="block py-2 text-oath-text hover:text-oath-emerald-primary transition-colors"
+                className="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/faq"
-                className="block py-2 text-oath-text hover:text-oath-emerald-primary transition-colors"
+                className="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 FAQ
               </Link>
               <Link
-                href="#download"
-                className="block w-full py-3 text-center bg-gradient-to-br from-oath-emerald-primary to-oath-emerald-deep text-white rounded-oath-md font-semibold"
+                href="#waitlist"
+                className="block w-full py-3 text-center rounded-full font-medium text-[#0B0C0D]"
+                style={{ background: 'linear-gradient(135deg, #FFF9E6 0%, #EBDFA4 50%, #BFA35A 100%)' }}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Download
+                Join Waitlist
               </Link>
             </div>
           </motion.div>
