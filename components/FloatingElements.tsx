@@ -332,7 +332,7 @@ export default function FloatingElements() {
         <motion.div
           animate={{ y: [0, -7, 0] }}
           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-          className="w-[230px]"
+          className="w-[300px]"
         >
           <TaskCard
             title="Schedule dentist appointment"

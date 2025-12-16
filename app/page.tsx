@@ -71,7 +71,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-8 tracking-tight"
             >
-              Keep your word.
+              Your Word. Your Oath.
             </motion.h1>
 
             <motion.p
