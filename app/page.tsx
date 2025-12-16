@@ -254,7 +254,10 @@ function ViewInsightsSection() {
 }
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -266,7 +269,7 @@ export default function Home() {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ firstName, email, phone: phone || undefined }),
       });
 
       const data = await res.json();
@@ -279,15 +282,147 @@ export default function Home() {
 
       setStatus('success');
       setMessage('You\'re on the list!');
+      setFirstName('');
       setEmail('');
+      setPhone('');
     } catch {
       setStatus('error');
       setMessage('Something went wrong');
     }
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setStatus('idle');
+    setMessage('');
+  };
+
   return (
     <>
+      {/* Waitlist Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={closeModal}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md bg-white dark:bg-[#1A1A1B] rounded-2xl shadow-2xl overflow-hidden"
+            >
+              {/* Close button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Modal Content */}
+              <div className="p-8">
+                {status === 'success' ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center py-8"
+                  >
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">You&apos;re on the list!</h3>
+                    <p className="text-gray-600 dark:text-gray-400">We&apos;ll notify you when Oath launches.</p>
+                  </motion.div>
+                ) : (
+                  <>
+                    <div className="text-center mb-6">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Join the Waitlist</h3>
+                      <p className="text-gray-600 dark:text-gray-400">Be the first to know when Oath launches.</p>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
+                          required
+                          placeholder="John"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#0C0C0D] text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          placeholder="john@example.com"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#0C0C0D] text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                          Phone <span className="text-gray-400 font-normal">(optional)</span>
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          placeholder="+1 (555) 123-4567"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#0C0C0D] text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                        />
+                        <p className="mt-1 text-xs text-gray-500">Get SMS updates about launch</p>
+                      </div>
+
+                      {status === 'error' && (
+                        <p className="text-red-500 text-sm">{message}</p>
+                      )}
+
+                      <button
+                        type="submit"
+                        disabled={status === 'loading'}
+                        className="w-full py-3 px-4 rounded-xl font-semibold text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        style={{
+                          background: 'linear-gradient(135deg, #23E1B2 0%, #0FAA77 50%, #067B60 100%)',
+                        }}
+                      >
+                        {status === 'loading' ? 'Joining...' : 'Join Waitlist'}
+                      </button>
+                    </form>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <Header />
       <main>
         {/* Hero Section */}
@@ -299,35 +434,39 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-transparent to-transparent dark:from-emerald-950/20 dark:via-transparent dark:to-transparent" />
 
           {/* Hero Content */}
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-16 sm:pt-20 overflow-hidden">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="inline-block text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-4 sm:mb-8">
-                AI-Powered Commitment Tracking
-              </span>
-            </motion.div>
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            {/* Text content - shifted up */}
+            <div className="-translate-y-8 sm:-translate-y-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="inline-block text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-4 sm:mb-8">
+                  AI-Powered Commitment Tracking
+                </span>
+              </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-8 tracking-tight"
-            >
-              Your Word. Your Oath.
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-8 tracking-tight"
+              >
+                Your Word. Your Oath.
+              </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[15px] sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed mb-6 sm:mb-12 w-full"
-            >
-              Oath understands task complexity and schedules smart reminders. Track what you honored vs. missed—honest accountability.
-            </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-[15px] sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed w-full"
+              >
+                Oath understands task complexity and schedules smart reminders. Track what you honored vs. missed—honest accountability.
+              </motion.p>
+            </div>
 
+            {/* CTA buttons - stay centered */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -335,13 +474,13 @@ export default function Home() {
               className="flex flex-col items-center"
               style={{ gap: '0.25rem' }}
             >
-              <Link
-                href="#waitlist"
-                className="px-8 py-4 rounded-full font-medium hover:opacity-90 transition-opacity text-lg text-[#0B0C0D]"
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="px-8 py-4 rounded-full font-medium hover:opacity-90 transition-opacity text-lg text-[#0B0C0D] cursor-pointer"
                 style={{ background: 'linear-gradient(135deg, #FFF9E6 0%, #EBDFA4 50%, #BFA35A 100%)' }}
               >
                 Join the Waitlist
-              </Link>
+              </button>
               <Link
                 href="#features"
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-lg py-2"

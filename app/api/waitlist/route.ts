@@ -12,7 +12,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { email } = await request.json()
+    const { firstName, email, phone } = await request.json()
+
+    if (!firstName || firstName.trim().length === 0) {
+      return NextResponse.json(
+        { error: 'First name is required' },
+        { status: 400 }
+      )
+    }
 
     if (!email || !email.includes('@')) {
       return NextResponse.json(
@@ -23,7 +30,11 @@ export async function POST(request: NextRequest) {
 
     const { error } = await supabase
       .from('waitlist')
-      .insert([{ email: email.toLowerCase().trim() }])
+      .insert([{
+        first_name: firstName.trim(),
+        email: email.toLowerCase().trim(),
+        phone: phone?.trim() || null,
+      }])
 
     if (error) {
       if (error.code === '23505') {
