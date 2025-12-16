@@ -1,12 +1,257 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingElements from '@/components/FloatingElements';
+
+// Notification Tone Section Component
+function NotificationToneSection() {
+  const [selectedTone, setSelectedTone] = useState<'gentle' | 'moderate' | 'brutal'>('moderate');
+
+  // Auto-cycle through tones every 3 seconds
+  useEffect(() => {
+    const tones: ('gentle' | 'moderate' | 'brutal')[] = ['gentle', 'moderate', 'brutal'];
+    const interval = setInterval(() => {
+      setSelectedTone((current) => {
+        const currentIndex = tones.indexOf(current);
+        return tones[(currentIndex + 1) % tones.length];
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const toneMessages = {
+    gentle: {
+      title: "Quarterly report",
+      message: "Hey! Just a friendly reminder about your quarterly report. You've got this! 💪",
+    },
+    moderate: {
+      title: "Quarterly report",
+      message: "Quarterly report due at 5 PM today. Time to wrap it up.",
+    },
+    brutal: {
+      title: "Quarterly report",
+      message: "Your quarterly report is due in 3 hours. No excuses. Get it done.",
+    },
+  };
+
+  return (
+    <section className="py-32 bg-white dark:bg-black">
+      <div className="max-w-4xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            Choose your motivation style
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            From encouraging nudges to no-nonsense accountability
+          </p>
+        </motion.div>
+
+        {/* Tone Toggle */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="flex justify-center mb-10"
+        >
+          <div className="inline-flex rounded-full p-1 bg-gray-100 dark:bg-[#1F2124]">
+            {(['gentle', 'moderate', 'brutal'] as const).map((tone) => (
+              <button
+                key={tone}
+                onClick={() => setSelectedTone(tone)}
+                className={`px-6 py-3 rounded-full text-sm font-semibold transition-all ${
+                  selectedTone === tone
+                    ? tone === 'gentle'
+                      ? 'bg-green-500 text-white'
+                      : tone === 'moderate'
+                      ? 'bg-yellow-500 text-white'
+                      : 'bg-red-500 text-white'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                {tone.charAt(0).toUpperCase() + tone.slice(1)}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Notification Preview */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="max-w-md mx-auto"
+        >
+          <div
+            className="rounded-2xl p-4"
+            style={{
+              background: selectedTone === 'gentle'
+                ? 'linear-gradient(135deg, #86efac 0%, #22c55e 50%, #16a34a 100%)'
+                : selectedTone === 'moderate'
+                ? 'linear-gradient(135deg, #fde047 0%, #eab308 50%, #ca8a04 100%)'
+                : 'linear-gradient(135deg, #fca5a5 0%, #ef4444 50%, #dc2626 100%)',
+            }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedTone}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-3 p-3 rounded-2xl border border-white/50"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.55)',
+                  backdropFilter: 'blur(16px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
+                }}
+              >
+                <Image
+                  src="/images/oath-icon.png"
+                  alt="Oath"
+                  width={40}
+                  height={40}
+                  className="rounded-[10px] flex-shrink-0 shadow-sm"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-sm font-semibold text-gray-900">{toneMessages[selectedTone].title}</span>
+                    <span className="text-xs text-gray-500">now</span>
+                  </div>
+                  <p className="text-sm text-gray-700">{toneMessages[selectedTone].message}</p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          <p className="mt-6 text-sm text-gray-500 dark:text-gray-500 text-center">
+            {selectedTone === 'gentle' && "Encouraging and supportive reminders"}
+            {selectedTone === 'moderate' && "Balanced and straightforward notifications"}
+            {selectedTone === 'brutal' && "Direct, no-nonsense accountability"}
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// View Insights Section Component
+function ViewInsightsSection() {
+  const insights = [
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      ),
+      color: '#8B5CF6',
+      title: 'Personality Archetype',
+      content: '"The Optimizer"',
+      description: 'You thrive on efficiency and continuous improvement',
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+      color: '#3B82F6',
+      title: 'Pattern Recognition',
+      content: '89% morning · 62% evening',
+      description: 'You honor most morning tasks but struggle with evening ones',
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      color: '#F59E0B',
+      title: 'Signature Insight',
+      content: 'Exercise is your superpower',
+      description: 'You never miss a workout—100% honor rate this month',
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
+      color: '#0FAA77',
+      title: 'Honor Rate',
+      content: '84% this week',
+      description: '12-day streak · Personal best: 23 days',
+    },
+  ];
+
+  return (
+    <section className="py-32 bg-gray-50 dark:bg-[#0C0C0D]">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            AI-powered insights
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            Understand your patterns, strengths, and opportunities for growth
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {insights.map((insight, index) => (
+            <motion.div
+              key={insight.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+              style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+            >
+              <div
+                className="w-[6px] flex-shrink-0"
+                style={{ backgroundColor: insight.color }}
+              />
+              <div className="flex-1 p-6">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{ backgroundColor: `${insight.color}1A`, color: insight.color }}
+                >
+                  {insight.icon}
+                </div>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                  {insight.title}
+                </p>
+                <p className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {insight.content}
+                </p>
+                <p className="text-gray-600 dark:text-gray-400 text-[15px]">
+                  {insight.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -691,40 +936,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Social Proof Section */}
-        <section className="py-24 bg-white dark:bg-black border-y border-gray-200 dark:border-gray-800">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-2">100%</p>
-                <p className="text-gray-600 dark:text-gray-400">Privacy focused</p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-2">0</p>
-                <p className="text-gray-600 dark:text-gray-400">Social features or distractions</p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-2">∞</p>
-                <p className="text-gray-600 dark:text-gray-400">Commitment to your success</p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+        {/* Notification Tone Section */}
+        <NotificationToneSection />
+
+        {/* View Insights Section */}
+        <ViewInsightsSection />
 
         {/* Waitlist CTA Section */}
         <section id="waitlist" className="py-32 bg-gray-50 dark:bg-[#0C0C0D]">
