@@ -46,7 +46,7 @@ export default function Home() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center bg-white dark:bg-black overflow-hidden">
+        <section className="relative min-h-[100dvh] flex items-center justify-center bg-white dark:bg-black overflow-hidden py-20 sm:py-0">
           {/* Floating UI Elements */}
           <FloatingElements />
 
@@ -54,13 +54,13 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-transparent to-transparent dark:from-emerald-950/20 dark:via-transparent dark:to-transparent" />
 
           {/* Hero Content */}
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-20">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-16 sm:pt-20 overflow-hidden">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-8">
+              <span className="inline-block text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-4 sm:mb-8">
                 AI-Powered Commitment Tracking
               </span>
             </motion.div>
@@ -69,7 +69,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-8 tracking-tight"
             >
               Keep your word.
             </motion.h1>
@@ -78,11 +78,9 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
-              style={{ marginBottom: '3rem' }}
+              className="text-[15px] sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed mb-6 sm:mb-12 w-full"
             >
-              Oath understands task complexity and schedules smart reminders.
-              Track what you honored vs. missed—honest accountability.
+              Oath understands task complexity and schedules smart reminders. Track what you honored vs. missed—honest accountability.
             </motion.p>
 
             <motion.div
@@ -115,7 +113,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="sm:hidden mt-12 w-full overflow-hidden"
+              className="sm:hidden mt-8 w-full overflow-hidden"
             >
               <motion.div
                 className="flex gap-4"
