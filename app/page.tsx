@@ -109,6 +109,135 @@ export default function Home() {
                 Coming to iOS · Early 2026
               </p>
             </motion.div>
+
+            {/* Mobile Task Cards Showcase - Infinite Marquee */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="sm:hidden mt-12 w-full overflow-hidden"
+            >
+              <motion.div
+                className="flex gap-4"
+                animate={{ x: ['0%', '-50%'] }}
+                transition={{
+                  x: {
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: 'linear',
+                  },
+                }}
+              >
+                {/* First set of cards */}
+                {[...Array(2)].map((_, setIndex) => (
+                  <div key={setIndex} className="flex gap-4 flex-shrink-0">
+                    {/* Task Card 1 - Work */}
+                    <div className="flex-shrink-0 w-[260px]">
+                      <div
+                        className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+                        style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+                      >
+                        <div className="w-[6px] flex-shrink-0 bg-blue-500" />
+                        <div className="flex-1 px-[14px] py-[12px]">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-[11px] font-bold tracking-wide text-gray-500 dark:text-gray-400 uppercase">Today</span>
+                            <span className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold" style={{ backgroundColor: 'rgba(15, 170, 119, 0.12)', color: '#0FAA77' }}>
+                              <svg className="w-[9px] h-[9px]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              Task
+                            </span>
+                          </div>
+                          <p className="text-[16px] font-bold text-gray-900 dark:text-white mb-2">Complete quarterly report</p>
+                          <div className="flex items-center justify-between">
+                            <span className="flex items-center gap-1 px-2 py-[3px] rounded-lg text-[11px] font-medium" style={{ backgroundColor: 'rgba(59, 130, 246, 0.15)', color: '#3B82F6' }}>Work</span>
+                            <span className="px-2.5 py-1 rounded-[12px] text-[12px] font-bold tracking-wide" style={{ backgroundColor: 'rgba(15, 170, 119, 0.1)', color: '#0FAA77', border: '0.5px solid rgba(15, 170, 119, 0.14)' }}>5:00 PM</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Task Card 2 - Exercise */}
+                    <div className="flex-shrink-0 w-[240px]">
+                      <div
+                        className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+                        style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+                      >
+                        <div className="w-[6px] flex-shrink-0 bg-green-500" />
+                        <div className="flex-1 px-[14px] py-[12px]">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-[11px] font-bold tracking-wide text-gray-500 dark:text-gray-400 uppercase">Tomorrow</span>
+                            <span className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold" style={{ backgroundColor: 'rgba(15, 170, 119, 0.12)', color: '#0FAA77' }}>
+                              <svg className="w-[9px] h-[9px]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              Task
+                            </span>
+                          </div>
+                          <p className="text-[16px] font-bold text-gray-900 dark:text-white mb-2">Morning run - 5K</p>
+                          <div className="flex items-center justify-between">
+                            <span className="flex items-center gap-1 px-2 py-[3px] rounded-lg text-[11px] font-medium" style={{ backgroundColor: 'rgba(34, 197, 94, 0.15)', color: '#22C55E' }}>Exercise</span>
+                            <span className="px-2.5 py-1 rounded-[12px] text-[12px] font-bold tracking-wide" style={{ backgroundColor: 'rgba(15, 170, 119, 0.1)', color: '#0FAA77', border: '0.5px solid rgba(15, 170, 119, 0.14)' }}>6:30 AM</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Task Card 3 - Honored */}
+                    <div className="flex-shrink-0 w-[230px]">
+                      <div
+                        className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+                        style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+                      >
+                        <div className="w-[6px] flex-shrink-0 bg-red-500" />
+                        <div className="flex-1 px-[14px] py-[12px]">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-[11px] font-bold tracking-wide text-gray-500 dark:text-gray-400 uppercase">Today</span>
+                            <span className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold" style={{ backgroundColor: 'rgba(15, 170, 119, 0.12)', color: '#0FAA77' }}>
+                              <svg className="w-[9px] h-[9px]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              Task
+                            </span>
+                          </div>
+                          <p className="text-[16px] font-bold line-through text-gray-400 dark:text-gray-500 mb-2">Schedule dentist</p>
+                          <div className="flex items-center justify-between">
+                            <span className="flex items-center gap-1 px-2 py-[3px] rounded-lg text-[11px] font-medium" style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', color: '#EF4444' }}>Health</span>
+                            <span className="px-2.5 py-1 rounded-[11px] text-[12px] font-bold text-white" style={{ background: 'linear-gradient(135deg, #0FAA77, #067B60)' }}>Honored</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Task Card 4 - Finance */}
+                    <div className="flex-shrink-0 w-[250px]">
+                      <div
+                        className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+                        style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)' }}
+                      >
+                        <div className="w-[6px] flex-shrink-0 bg-yellow-500" />
+                        <div className="flex-1 px-[14px] py-[12px]">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-[11px] font-bold tracking-wide text-gray-500 dark:text-gray-400 uppercase">Friday</span>
+                            <span className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold" style={{ backgroundColor: 'rgba(15, 170, 119, 0.12)', color: '#0FAA77' }}>
+                              <svg className="w-[9px] h-[9px]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              Task
+                            </span>
+                          </div>
+                          <p className="text-[16px] font-bold text-gray-900 dark:text-white mb-2">Review monthly budget</p>
+                          <div className="flex items-center justify-between">
+                            <span className="flex items-center gap-1 px-2 py-[3px] rounded-lg text-[11px] font-medium" style={{ backgroundColor: 'rgba(234, 179, 8, 0.15)', color: '#EAB308' }}>Finance</span>
+                            <span className="px-2.5 py-1 rounded-[12px] text-[12px] font-bold tracking-wide" style={{ backgroundColor: 'rgba(15, 170, 119, 0.1)', color: '#0FAA77', border: '0.5px solid rgba(15, 170, 119, 0.14)' }}>7:00 PM</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
