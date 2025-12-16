@@ -297,6 +297,22 @@ export default function Home() {
     setMessage('');
   };
 
+  const formatPhoneNumber = (value: string) => {
+    const numbers = value.replace(/\D/g, '');
+    if (numbers.length <= 3) {
+      return numbers.length ? `(${numbers}` : '';
+    }
+    if (numbers.length <= 6) {
+      return `(${numbers.slice(0, 3)}) ${numbers.slice(3)}`;
+    }
+    return `(${numbers.slice(0, 3)}) ${numbers.slice(3, 6)}-${numbers.slice(6, 10)}`;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhoneNumber(e.target.value);
+    setPhone(formatted);
+  };
+
   return (
     <>
       {/* Waitlist Modal */}
@@ -393,8 +409,8 @@ export default function Home() {
                           type="tel"
                           id="phone"
                           value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          placeholder="+1 (555) 123-4567"
+                          onChange={handlePhoneChange}
+                          placeholder="(555) 123-4567"
                           className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#0C0C0D] text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
                         />
                         <p className="mt-1 text-xs text-gray-500">Get SMS updates about launch</p>
