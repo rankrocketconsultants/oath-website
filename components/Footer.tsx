@@ -75,7 +75,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500 dark:text-gray-500">
-            © {currentYear} Oath. All rights reserved.
+            © 2025 Oath App LLC. All rights reserved.
           </p>
           <Link
             href="#waitlist"
