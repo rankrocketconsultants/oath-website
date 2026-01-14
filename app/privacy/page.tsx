@@ -210,14 +210,14 @@ export default function PrivacyPolicy() {
               California residents can opt out of data sharing for advertising and analytics purposes through two methods:
             </p>
             <ul className="list-disc pl-6 space-y-2 mb-4">
-              <li><strong>Email:</strong> Send a request to <a href="mailto:privacy@oath.app" className="text-oath-emerald-primary hover:underline">privacy@oath.app</a> with "California Privacy Rights - Opt-Out" in the subject line. Include your name and email address associated with your Oath account.</li>
+              <li><strong>Email:</strong> Send a request to <a href="mailto:privacy@theoath.app" className="text-oath-emerald-primary hover:underline">privacy@theoath.app</a> with "California Privacy Rights - Opt-Out" in the subject line. Include your name and email address associated with your Oath account.</li>
               <li><strong>Website:</strong> Visit our <a href="/do-not-sell" className="text-oath-emerald-primary hover:underline">Do Not Sell My Personal Information</a> page to submit an opt-out request.</li>
             </ul>
             <p className="mb-4">
               We will process your request within 30 days and send you a confirmation email. Once opted out, we will not share your anonymized data with third parties for advertising or analytics purposes, though we may still use it internally to improve the app.
             </p>
             <p className="mb-4">
-              For all other California privacy rights requests, contact us at privacy@oath.app with "California Privacy Rights" in the subject line.
+              For all other California privacy rights requests, contact us at privacy@theoath.app with "California Privacy Rights" in the subject line.
             </p>
 
             <h3 className="text-heading-sm mb-3 text-oath-text">Exercising Your Rights</h3>
@@ -248,7 +248,7 @@ export default function PrivacyPolicy() {
             </p>
             <ul className="list-disc pl-6 space-y-2 mb-4">
               <li><strong>In-App:</strong> Delete your account through the app settings (Account → Delete Account)</li>
-              <li><strong>Email:</strong> Send a request to <a href="mailto:privacy@oath.app" className="text-oath-emerald-primary hover:underline">privacy@oath.app</a> with "Data Deletion Request" in the subject line</li>
+              <li><strong>Email:</strong> Send a request to <a href="mailto:privacy@theoath.app" className="text-oath-emerald-primary hover:underline">privacy@theoath.app</a> with "Data Deletion Request" in the subject line</li>
             </ul>
             <p className="mb-4">
               Upon receiving your deletion request, we will:
@@ -307,14 +307,14 @@ export default function PrivacyPolicy() {
             <ul className="list-none space-y-2">
               <li>
                 <strong>Email:</strong>{' '}
-                <a href="mailto:privacy@oath.app" className="text-oath-emerald-primary hover:underline">
-                  privacy@oath.app
+                <a href="mailto:privacy@theoath.app" className="text-oath-emerald-primary hover:underline">
+                  privacy@theoath.app
                 </a>
               </li>
               <li>
                 <strong>Website:</strong>{' '}
-                <a href="/contact" className="text-oath-emerald-primary hover:underline">
-                  Contact Form
+                <a href="https://theoath.app/contact" className="text-oath-emerald-primary hover:underline">
+                  https://theoath.app/contact
                 </a>
               </li>
             </ul>

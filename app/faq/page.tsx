@@ -95,7 +95,7 @@ export default function FAQ() {
     },
     {
       question: "How do I delete my data?",
-      answer: "You can delete all your data from within the app's settings. You can also contact us at privacy@oath.app to request data deletion."
+      answer: "You can delete all your data from within the app's settings. You can also contact us at privacy@theoath.app to request data deletion."
     },
   ];
 

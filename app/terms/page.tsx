@@ -124,7 +124,7 @@ export default function TermsOfService() {
             <ul className="list-disc pl-6 space-y-2 mb-4">
               <li><strong>Apple Refunds:</strong> You may request a refund directly from Apple within the timeframe specified in Apple's refund policy (typically 90 days). Apple evaluates each refund request on a case-by-case basis.</li>
               <li><strong>Legal Requirements:</strong> In certain jurisdictions (such as the EU), you may have a right to cancel within 14 days and receive a refund, subject to applicable law.</li>
-              <li><strong>Exceptional Circumstances:</strong> We may, at our sole discretion, provide refunds in exceptional circumstances. Contact support@oath.app to request consideration.</li>
+              <li><strong>Exceptional Circumstances:</strong> We may, at our sole discretion, provide refunds in exceptional circumstances. Contact support@theoath.app to request consideration.</li>
             </ul>
 
             <h3 className="text-heading-sm mb-3 text-oath-text">Free Trials</h3>
@@ -300,7 +300,7 @@ export default function TermsOfService() {
               You have the right to opt out of this arbitration agreement. To opt out, you must notify us in writing within 30 days of first accepting these Terms. Your opt-out notice must include your name, address, email address, and a clear statement that you wish to opt out of this arbitration agreement. Send opt-out notices to:
             </p>
             <p className="mb-4 ml-6">
-              <strong>Email:</strong> support@oath.app<br/>
+              <strong>Email:</strong> support@theoath.app<br/>
               <strong>Subject Line:</strong> Arbitration Opt-Out
             </p>
             <p className="mb-4">
@@ -374,7 +374,7 @@ export default function TermsOfService() {
               <li><strong>Intellectual Property:</strong> In the event of any third-party claim that the App infringes that third party's intellectual property rights, Oath, not Apple, will be solely responsible for the investigation, defense, settlement, and discharge of any such claim</li>
               <li><strong>Legal Compliance:</strong> You represent and warrant that (i) you are not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a "terrorist supporting" country; and (ii) you are not listed on any U.S. Government list of prohibited or restricted parties</li>
               <li><strong>Third-Party Beneficiary:</strong> Apple and Apple's subsidiaries are third-party beneficiaries of these Terms, and upon your acceptance of these Terms, Apple will have the right (and will be deemed to have accepted the right) to enforce these Terms against you as a third-party beneficiary</li>
-              <li><strong>Contact Information:</strong> For questions, support, or complaints regarding the App, contact Oath at support@oath.app</li>
+              <li><strong>Contact Information:</strong> For questions, support, or complaints regarding the App, contact Oath at support@theoath.app</li>
             </ul>
           </section>
 
@@ -427,14 +427,14 @@ export default function TermsOfService() {
             <ul className="list-none space-y-2 mb-4">
               <li>
                 <strong>Email:</strong>{' '}
-                <a href="mailto:support@oath.app" className="text-oath-emerald-primary hover:underline">
-                  support@oath.app
+                <a href="mailto:support@theoath.app" className="text-oath-emerald-primary hover:underline">
+                  support@theoath.app
                 </a>
               </li>
               <li>
                 <strong>Website:</strong>{' '}
-                <a href="/contact" className="text-oath-emerald-primary hover:underline">
-                  Contact Form
+                <a href="https://theoath.app/contact" className="text-oath-emerald-primary hover:underline">
+                  https://theoath.app/contact
                 </a>
               </li>
             </ul>
