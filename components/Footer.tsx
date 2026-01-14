@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-50 dark:bg-[#0C0C0D] border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -37,6 +37,18 @@ export default function Footer() {
               <li>
                 <Link href="/faq" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                   FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Links */}
+          <div>
+            <h4 className="font-medium text-gray-900 dark:text-white mb-4">Contact</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/contact" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
