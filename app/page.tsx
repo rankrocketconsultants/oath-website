@@ -450,7 +450,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-transparent to-transparent" />
 
           {/* Hero Content */}
-          <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center box-border">
+          <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center">
             {/* Text content - shifted up */}
             <div className="-translate-y-8 sm:-translate-y-12">
               <motion.div
