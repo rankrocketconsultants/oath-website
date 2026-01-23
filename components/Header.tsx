@@ -20,7 +20,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/80 dark:bg-black/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-800/50'
+          ? 'bg-white/80/80 backdrop-blur-lg border-b border-gray-200/50/50'
           : 'bg-transparent'
       }`}
     >
@@ -28,7 +28,7 @@ export default function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-semibold text-gray-900 dark:text-white hover:opacity-70 transition-opacity"
+          className="text-xl font-semibold text-gray-900 hover:opacity-70 transition-opacity"
         >
           Oath
         </Link>
@@ -37,19 +37,19 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-8">
           <Link
             href="/features"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
           >
             Features
           </Link>
           <Link
             href="/about"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
           >
             About
           </Link>
           <Link
             href="/faq"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
           >
             FAQ
           </Link>
@@ -65,7 +65,7 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
           aria-label="Toggle menu"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,26 +86,26 @@ export default function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-lg border-t border-gray-200/50 dark:border-gray-800/50"
+            className="md:hidden bg-white/95/95 backdrop-blur-lg border-t border-gray-200/50/50"
           >
             <div className="px-6 py-6 space-y-4">
               <Link
                 href="/features"
-                className="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                className="block py-2 text-gray-600 hover:text-gray-900 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Features
               </Link>
               <Link
                 href="/about"
-                className="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                className="block py-2 text-gray-600 hover:text-gray-900 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/faq"
-                className="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                className="block py-2 text-gray-600 hover:text-gray-900 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 FAQ

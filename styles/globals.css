@@ -1,6 +1,41 @@
 @import "tailwindcss";
 @import './oath-design-tokens.css';
 
+/* Force light mode regardless of system preference */
+:root {
+  color-scheme: light only;
+}
+
+html {
+  color-scheme: light only;
+}
+
+/* Override all dark: variants to use light mode colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light only;
+  }
+
+  /* Force light mode backgrounds */
+  .dark\:bg-black,
+  .dark\:bg-\[\#0C0C0D\],
+  .dark\:bg-\[\#1F2124\],
+  .dark\:bg-\[\#1A1A1B\] {
+    background-color: inherit !important;
+  }
+
+  /* Force light mode text colors */
+  .dark\:text-white {
+    color: inherit !important;
+  }
+
+  .dark\:text-gray-400,
+  .dark\:text-gray-500,
+  .dark\:text-gray-300 {
+    color: inherit !important;
+  }
+}
+
 /* Hide scrollbar for horizontal scroll containers */
 .scrollbar-hide {
   -ms-overflow-style: none;

@@ -72,7 +72,7 @@ function TaskCard({
 
   return (
     <div
-      className="flex overflow-hidden rounded-[16px] bg-white dark:bg-[#1F2124]"
+      className="flex overflow-hidden rounded-[16px] bg-white"
       style={{
         boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)',
       }}
@@ -87,7 +87,7 @@ function TaskCard({
       <div className="flex-1 px-[14px] py-[12px]">
         {/* Row 1: Day label + Type badge */}
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-[11px] font-bold tracking-wide text-gray-500 dark:text-gray-400 uppercase">
+          <span className="text-[11px] font-bold tracking-wide text-gray-500 uppercase">
             {dayLabel}
           </span>
           <span
@@ -106,7 +106,7 @@ function TaskCard({
 
         {/* Row 2: Title */}
         <p
-          className={`text-[16px] font-bold mb-2 ${isHonored ? 'line-through text-gray-400 dark:text-gray-500' : 'text-gray-900 dark:text-white'}`}
+          className={`text-[16px] font-bold mb-2 ${isHonored ? 'line-through text-gray-400' : 'text-gray-900'}`}
         >
           {title}
         </p>
@@ -226,7 +226,7 @@ function HonorRateCard({ rate }: { rate: number }) {
 function NotificationCard({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <div
-      className="flex items-center gap-3 p-4 rounded-[16px] bg-white dark:bg-[#1F2124] w-[280px]"
+      className="flex items-center gap-3 p-4 rounded-[16px] bg-white w-[280px]"
       style={{
         boxShadow: '0 4px 12px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04)',
       }}
@@ -242,9 +242,9 @@ function NotificationCard({ title, subtitle }: { title: string; subtitle: string
         </svg>
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-[11px] text-gray-500 dark:text-gray-400">Oath Reminder</p>
-        <p className="text-[14px] font-semibold text-gray-900 dark:text-white truncate">{title}</p>
-        <p className="text-[12px] text-gray-500 dark:text-gray-400">{subtitle}</p>
+        <p className="text-[11px] text-gray-500">Oath Reminder</p>
+        <p className="text-[14px] font-semibold text-gray-900 truncate">{title}</p>
+        <p className="text-[12px] text-gray-500">{subtitle}</p>
       </div>
     </div>
   );

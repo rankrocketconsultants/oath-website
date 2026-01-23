@@ -32,8 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-sans oath-body oath-text-primary oath-bg-default antialiased">
+    <html lang="en" className={inter.variable} style={{ colorScheme: 'light' }}>
+      <head>
+        <meta name="color-scheme" content="light only" />
+      </head>
+      <body className="font-sans oath-body oath-text-primary oath-bg-default antialiased bg-white text-gray-900">
         {children}
       </body>
     </html>
