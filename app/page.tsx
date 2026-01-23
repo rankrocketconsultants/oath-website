@@ -450,7 +450,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-transparent to-transparent" />
 
           {/* Hero Content */}
-          <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             {/* Text content - shifted up */}
             <div className="-translate-y-8 sm:-translate-y-12">
               <motion.div
@@ -477,7 +477,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-[15px] sm:text-xl md:text-2xl text-gray-600 leading-relaxed text-center w-full max-w-[calc(100vw-3rem)] sm:max-w-2xl mx-auto"
+                className="text-[15px] sm:text-xl md:text-2xl text-gray-600 leading-relaxed text-center max-w-2xl mx-auto"
               >
                 Oath understands task complexity and schedules smart reminders. Track what you honored vs. missed—honest accountability.
               </motion.p>
