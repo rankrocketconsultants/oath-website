@@ -148,33 +148,9 @@
 }
 
 /* ============================================
-   DARK MODE
+   DARK MODE (disabled - light mode only)
    ============================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --oath-bg: #000000;
-    --oath-surface: #1F2124;
-    --oath-container: #0B0C0D;
-    --oath-text: #FFFFFF;
-    --oath-text-secondary: #9CA3AF;
-    --oath-hairline: #262B30;
-
-    /* Reminder card shadows (dark mode) - use bright gold glow for floating effect */
-    --oath-card-shadow: 0 2px 5px rgba(255, 249, 230, 0.18), 0 1px 3px rgba(255, 249, 230, 0.12), 0 0 10px rgba(255, 249, 230, 0.1);
-
-    /* Gold brand miss colors change in dark mode */
-    --oath-miss-gold-dark-bg: #C7CFD9;
-    --oath-miss-gold-dark-border: #9AA8B8;
-    --oath-miss-gold-dark-ink: #111216;
-
-    /* Shadows are lighter in dark mode */
-    --shadow-sm: 0 1px 2px 0 rgba(255, 255, 255, 0.05);
-    --shadow-md: 0 1px 3px 0 rgba(255, 255, 255, 0.1);
-    --shadow-lg: 0 4px 6px -1px rgba(255, 255, 255, 0.1);
-    --shadow-xl: 0 10px 15px -3px rgba(255, 255, 255, 0.1);
-    --shadow-2xl: 0 20px 25px -5px rgba(255, 255, 255, 0.1);
-  }
-}
+/* Dark mode has been disabled. Site is light mode only. */
 
 /* ============================================
    GRADIENTS (as CSS classes)

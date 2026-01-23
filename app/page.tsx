@@ -457,6 +457,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
+                className="text-center"
               >
                 <span className="inline-block text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-4 sm:mb-8">
                   AI-Powered Commitment Tracking
@@ -467,7 +468,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-8 tracking-tight"
+                className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-8 tracking-tight text-center"
               >
                 Your Word. Your Oath.
               </motion.h1>
@@ -476,7 +477,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-[15px] sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed w-full"
+                className="text-[15px] sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed w-full text-center"
               >
                 Oath understands task complexity and schedules smart reminders. Track what you honored vs. missed—honest accountability.
               </motion.p>
@@ -487,7 +488,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center text-center"
               style={{ gap: '0.25rem' }}
             >
               <button
@@ -503,7 +504,7 @@ export default function Home() {
               >
                 Learn more →
               </Link>
-              <p className="text-sm text-gray-500 dark:text-gray-500">
+              <p className="text-sm text-gray-500 dark:text-gray-500 text-center">
                 Coming to iOS · Early 2026
               </p>
             </motion.div>
